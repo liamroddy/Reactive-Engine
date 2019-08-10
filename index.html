@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8" />
+	<title>React game demo</title>
+
+	<style>
+		/* CSS is used to render the game. By default all game divs are hidden */
+		#gameContainer div {
+			display: none;
+		}
+		
+		/* Our React code chooses which div is currently active based on player's options, and the CSS makes that div visible */
+		#gameContainer div#txt-active {
+			display: inline-block;
+		}
+	</style>
+
+	<!-- These scripts (especially Babel) are for demonstration only. You should use a more integrated setup for production -->
+	<!-- https://reactjs.org/docs/add-react-to-a-website.html#add-jsx-to-a-project -->
+	<script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+	<script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+	<script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+
+</head>
+
+<body>
+	<div id="root"></div>
+	<!-- Load up the game itself: -->
+	<script src="game_logic.js" type="text/babel"></script>
+</body>
+</html>
