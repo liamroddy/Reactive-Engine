@@ -2,24 +2,33 @@
 <html>
 <head>
 	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>React game demo</title>
 
 	<style>
 		/* CSS is used to render the game. By default all game divs are hidden */
 		#gameContainer div {
 			display: none;
+			opacity: 0;
 		}
 		
 		/* Our React code chooses which div is currently active based on player's options, and the CSS makes that div visible */
 		#gameContainer div#txt-active {
 			display: inline-block;
+			opacity: 1;
+		}
+
+		button {
+			display: block;
+			padding: .25rem .5rem;
+			margin: .25rem;
 		}
 	</style>
 
 	<!-- These scripts (especially Babel) are for demonstration only. You should use a more integrated setup for production -->
 	<!-- https://reactjs.org/docs/add-react-to-a-website.html#add-jsx-to-a-project -->
-	<script src="https://unpkg.com/react@16/umd/react.development.js"></script>
-	<script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+	<script src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
+	<script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
 	<script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
 
 </head>

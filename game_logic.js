@@ -1,3 +1,8 @@
+var opacity = 1; // opacity of the currently displayed element
+var opacityStep = .05; // how much to change div opacity by per 1/60th of sec
+
+var preventInput = false; // whether to prevent user input
+
 function Option(props) {
 	// "Option" component is basically just a button with a "text" prop:
 	return <button onClick={handleClick}>{props.label}</button>;
@@ -5,16 +10,42 @@ function Option(props) {
     function handleClick(e) {
 		e.preventDefault();
 
-		var a = document.getElementById("txt-active"); // find currently active div, i.e. the one this "Option" is inside of
-		a.id = "txt-inactive"; // deactivate it (see CSS)
+		if(preventInput) // exit if we're in a transition
+			return;
+		else preventInput = true; // make sure player can't select something else during transition
 
-		var b = document.getElementsByClassName(props.text)[0]; // find div with class that matches this Option's "text" prop
-		b.id = "txt-active"; // activate that div (see CSS)
-    }
+		var currentDiv = document.getElementById("txt-active"); // find currently active div, i.e. the one this "Option" is inside of
+		var nextDiv = document.getElementsByClassName(props.text)[0]; // find div with class that matches this Option's "text" prop
+
+		transition(currentDiv, nextDiv); // begin to transtion from currently displayed div to the one player has selected.
+	}
+
+	function transition(startDiv, finishDiv) {
+		opacity -= opacityStep; // reduce opacity by per step amount
+		var active = startDiv; // by default the active div is the one we start the transition at
+		
+		if(opacity <= 0) { // if we've already faded startDiv to invisisbility
+			// make finsihDiv the active one: 
+			startDiv.id = "txt-inactive";
+			finishDiv.id = "txt-active";
+
+			active = finishDiv;
+		}
+		
+		active.style = "opacity: " + Math.abs(opacity); // apply our opacity value as absolute (it goes down to -1, see below)
+		
+		if(opacity > -1) { // if finishDiv hasn't been fully faded in [ opacity != absolute(-1) ]
+			setTimeout(transition, 16, startDiv, finishDiv); // continue transition in 16ms
+		}
+		else { // we're done transitioning to finishDiv
+			preventInput = false; // allow user input
+			opacity = 1; // reset opacity for next transition
+		}
+	}
 }
 
 
-var game = (
+var script = (
 <div id="gameContainer">
 	<h1>Adventure Game Demo</h1>
 
@@ -54,13 +85,12 @@ var game = (
 	</div>
 
 	<div className="theEnd">
-		<p>THE END!</p>
+		<h2>THE END!</h2>
 		<Option label="Try again!" text="initial"/>
 	</div>    
 </div>
 );
 
 ReactDOM.render(
-game, document.getElementById('root')
+script, document.getElementById('root')
 );
-  
