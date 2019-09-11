@@ -1,6 +1,3 @@
-// import React from 'react';
-// import ReactDOM from 'react-dom';
-
 var opacity = 1; // opacity of the currently displayed element
 var opacityStep = .05; // how much to change div opacity by per 1/60th of sec
 
@@ -107,7 +104,7 @@ var script = (
 	<div className="answerPhone">
 		<p>&ldquo;Hello?&rdquo; you croak out.</p>
 		<p><em>“Hello,”</em> comes the elderly woman’s voice on the other end. <em>“Is this Ace Valentine?”</em></p>
-		<p>Well, that definitely sounds like a made-up name. Still – and this is quite embarrassing – you appear to have forgotten your own name. May as well make one up.</p>
+		<p>Well, that definitely sounds like a made-up name. Still – and this is quite embarrassing – you appear to have forgotten your own name. May as well make one up too.</p>
 		<p>“No,” you say. “Not Ace. I’m…”</p>
 		<Input valueToSet="playerName" placeholder="Your name" capitaliseFirstLetter="true" goto="nameGiven"/>
 	</div>
