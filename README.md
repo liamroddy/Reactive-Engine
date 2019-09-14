@@ -1,4 +1,4 @@
-# react-game
+# Reactive-Engine
 An adventure game engine built with React.js
 
 It's quite simple and elegant, but still allows for complex branching dialogue.
