@@ -49,7 +49,7 @@ function Input(props) {
 				instancesToUpdate[i].textContent = playerInput;
 			}
 
-			transition(document.getElementById("txt-active"), document.getElementsByClassName(props.goto)[0]);
+			transition(document.getElementById("txt-active"), document.getElementsByClassName(props.goTo)[0]);
 		}
 	}
 }
@@ -76,52 +76,3 @@ function transition(startDiv, finishDiv) {
 		opacity = 1; // reset opacity for next transition
 	}
 }
-
-var script = (
-<div id="gameContainer">
-	<h1>Adventure Game Demo</h1>
-
-	{/* The starting div is given id="txt-active": */}
-	<div className="initial" id="txt-active"> 
-		<p>You wake up slouched at a desk with a horrible headache. There&rsquo;s an empty bottle on your desk of something unpleasantly cheap. There&rsquo;s a loud ringing in your ears, which you soon realise is actually on the desk.</p>
-		<p>It&rsquo;s your phone, ringing away, an unknown number on the screen.</p>
-		<Option label="Answer it" text="answerPhone"/>
-		<Option label="Hang it up and go back to sleep" text="dontAnswerPhone"/>
-	</div>
-
-		<div className="dontAnswerPhone">
-			<p>You cancel the call and drift back into your hungover stupor. Before too long though, it rings again. Same number.</p>
-			<Option label="Answer it" text="answerPhone"/>
-			<Option label="Chuck it out the window" text="chuckOutPhone"/>
-		</div>
-
-		<div className="chuckOutPhone">
-			<p>You fling your phone out the nearby open window and doze off back to sleep.</p>
-			<p>Congratulations! You’ve failed the game in two clicks!</p>
-			<Option label="Try again" text="initial"/>
-		</div>
-
-	<div className="answerPhone">
-		<p>&ldquo;Hello?&rdquo; you croak out.</p>
-		<p><em>“Hello,”</em> comes the elderly woman’s voice on the other end. <em>“Is this Ace Valentine?”</em></p>
-		<p>Well, that definitely sounds like a made-up name. Still – and this is quite embarrassing – you appear to have forgotten your own name. May as well make one up too.</p>
-		<p>“No,” you say. “Not Ace. I’m…”</p>
-		<Input valueToSet="playerName" placeholder="Your name" capitaliseFirstLetter="true" goto="nameGiven"/>
-	</div>
-
-	<div className="nameGiven">
-		<p><em>“Oh, <span className="playerName"></span>, is it? Do I have the right number, <span className="playerName"></span>? Is this the, eh, the… ‘Special’ Detective Agency?"</em></p>
-		<p>A faint memory swims up from the murky depths of your brain. Yes, the agency! That’s where you are. You got drunk off cheap wine by yourself in your office last night, in celebration of having cheap wine. It's all coming back to you now, unfortunately.</p>
-		<p>“Yes,” you say. “This is us. How may I help you?”</p>
-		<p><em>“Well, It’s my printer,”</em> she responds. <em>“It’s being… strange.”</em></p>
-		
-		<h2>End of demo (for now)</h2>
-
-		<Option label="Replay" text="initial"/>
-	</div> 
-</div>
-);
-
-ReactDOM.render(
-script, document.getElementById('root')
-);
